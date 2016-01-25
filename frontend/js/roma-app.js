@@ -1,4 +1,4 @@
-var romaApp = angular.module('romaApp', []);
+var romaApp = angular.module('romaApp', ['ngMaterial', 'ui-leaflet', 'chart.js']);
 
 romaApp.controller('mainController', function($scope){
     // me invento la data
@@ -38,4 +38,15 @@ romaApp.controller('mainController', function($scope){
         $scope.selection['obj'] = obj;
         $scope.selection['ind'] = false;
     };
+
+ 
+    angular.extend($scope, {bogota: {lat: 4.63802334398948, lng: -74.09042358398438, zoom: 8 }});
+
+    $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    $scope.series = ['Series A', 'Series B'];
+
+    $scope.data_bar = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+    ];
 });

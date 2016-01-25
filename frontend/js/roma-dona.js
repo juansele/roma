@@ -81,7 +81,7 @@ romaApp.directive('romaDona', ['$timeout', function(timer) {
                 var num_obj = Object.keys(scope.data.obj).length;
                 
                 scope.ctx.beginPath();
-                scope.ctx.strokeStyle = "rgba(0,0,0,0.35)";
+                scope.ctx.strokeStyle = "rgba(0,0,0,0.10)";
                 scope.ctx.fillStyle = "rgba(0,0,0,0.5)";
                 scope.ctx.textAlign = "center";
                 scope.ctx.textBaseline = "middle";
