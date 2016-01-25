@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ES">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<title>ROMA Project</title>
+	
+        <style type="text/css">
+            canvas { border: 1px solid black; }
+        </style>
+    </head>
+    <body ng-app="romaApp">
+        <div ng-controller="mainController">
+            <div ng-click="select_obj(12)">12</div>
+            <canvas class="roma-dona" width="500" height="500" config="config" data="data" scan="scan" selection="selection"></canvas>
+        </div>
+        
+        <script type="text/javascript" src="js/bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="js/roma-app.js"></script>
+        <script type="text/javascript" src="js/roma-dona.js"></script>
+    </body>
+</html>
