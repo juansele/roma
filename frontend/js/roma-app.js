@@ -1,7 +1,7 @@
 var romaApp = angular.module('romaApp', []);
 
 romaApp.controller('mainController', function($scope){
-    
+    // me invento la data
     var relacionados = [];
     for (var i = 0; i < 0.2*68*17; i++) {
         var indicador = Math.floor(68*Math.random());
@@ -23,16 +23,17 @@ romaApp.controller('mainController', function($scope){
         data.obj[relacionados[i][1]].push(relacionados[i][0]);
         data.ind[relacionados[i][0]].push(relacionados[i][1]);
     }
-    $scope.data = data;
     
+    // inicializo la directiva
+    $scope.data = data;
     $scope.config = {
         center_r: 50,
         sector_r: 10
     };
-    
     $scope.scan = {};
     $scope.selection = {};
     
+    // una funcion para jugar con la directiva
     $scope.select_obj = function(obj){
         $scope.selection['obj'] = obj;
         $scope.selection['ind'] = false;

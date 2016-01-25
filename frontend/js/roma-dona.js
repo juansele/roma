@@ -40,9 +40,12 @@ romaApp.directive('romaDona', ['$timeout', function(timer) {
                 // paints mouse scanning
                 scope.ctx.fillStyle = "rgba(189, 195, 199,0.7)";
                 scope.ctx.beginPath();
-                if (scope.scan.obj !== false) {
+                if (scope.scan.obj !== false && scope.scan.obj !== undefined) {
                     for (var i = 0; i < num_ind; i++) {
                         paint_sector(scope.scan.obj,num_ind-i);
+                        if (scope.data.obj[scope.scan.obj].indexOf(i) != -1) {
+                            paint_sector(num_obj+1,i);
+                        }
                     }
                 }
                 if (scope.scan.ind !== false) {
@@ -55,9 +58,12 @@ romaApp.directive('romaDona', ['$timeout', function(timer) {
                 // paints general selection
                 scope.ctx.fillStyle = "rgba(211, 84, 0,0.7)";
                 scope.ctx.beginPath();
-                if (scope.selection.obj !== false) {
+                if (scope.selection.obj !== false && scope.selection.obj !== undefined) {
                     for (var i = 0; i < num_ind; i++) {
                         paint_sector(scope.selection.obj,num_ind-i);
+                        if (scope.data.obj[scope.selection.obj].indexOf(i) != -1) {
+                            paint_sector(num_obj,i);
+                        }
                     }
                 }
                 if (scope.selection.ind !== false) {
@@ -98,7 +104,7 @@ romaApp.directive('romaDona', ['$timeout', function(timer) {
                 }
                 scope.ctx.stroke();
                 
-                                
+                        // para pintar los limites de las dimensiones        
                         //ctx.beginPath();
                         //ctx.strokeStyle = "rgba(44, 62, 80,0.7)";
                         //ctx.moveTo(-(50-2*10)*Math.sin(-2*0*Math.PI/68), -(50-2*10)*Math.cos(-2*0*Math.PI/68));
@@ -110,6 +116,7 @@ romaApp.directive('romaDona', ['$timeout', function(timer) {
                         //ctx.stroke();
             };
             
+            // limites de dimensiones hardcodeados
             var paint_relation = function(){
                 for (var obj in scope.data.obj) {
                     for (var ind_index = 0; ind_index < scope.data.obj[obj].length; ++ind_index) {
