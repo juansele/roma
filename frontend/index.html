@@ -18,49 +18,38 @@
 			<nav class="md-whiteframe-2dp">
 				<div flex="10"></div>
 				<div flex="80">
-					<div class="md-toolbar-tools">
-						<span><b>ROMA</b></span>
-						<span flex></span>
+					<div layout="row" class="md-toolbar-tools">
+						<div layuot="row" flex="10"><span><b>ROMA</b></span></div>
+						<div layout="row" flex="50" layout-align="start center">
+							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+								<div flex="100" layout="row" layout-align="center center"><label><b>Gráfica</b></label></div>
+								
+							</div>
+							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+								<div flex="100" layout="row" layout-align="center center"><label><b>Mapas</b></label></div>
+								
+							</div>
+							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+								<div flex="100" layout="row" layout-align="center center"><label><b>G. Barras</b></label></div>
+								
+							</div>
+							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+								<div flex="100" layout="row" layout-align="center center"><label><b>Tabla</b></label></div>
+								
+							</div>
+						</div>
+						<div layout="row" flex="30">
+							<div flex layout="row" layout-align="end center">
+								<div>
+									<md-icon md-svg-src="img/icons/ic_info_outline_black_24px.svg"></md-icon>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div flex="10"></div>
 			</nav>
-			<!-- Navegador acceso rápido -->
-			<section layout="row" class="content-filter md-whiteframe-2dp">
-				<div flex="10"></div>
-				<div flex="80" layout="row" layout-align="space-between center">
-					
-					<div layout="row" flex="50" layout-align="start center">
-						<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;">
-							<div flex="100"><label><b>Gráfica</b></label></div>
-							
-						</div>
-						<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;">
-							<div flex="100"><label><b>Mapas</b></label></div>
-							
-						</div>
-						<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;">
-							<div flex="100"><label><b>G. Barras</b></label></div>
-							
-						</div>
-						<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;">
-							<div flex="100"><label><b>Tabla</b></label></div>
-							
-						</div>
-					</div>
-					<div layout="row" flex="30">
-						<div flex layout="row" layout-align="end center">
-							<div>
-								<md-icon md-svg-src="img/icons/ic_info_outline_black_24px.svg"></md-icon>
-							</div>
-							<span class="main-logo" layout="row">
-								<label flex="100">iNFO.</label>
-							</span>
-						</div>
-					</div>
-				</div>
-				<div flex="10"></div>
-			</section>
+			
 			<md-content layout="column" md-scroll-y>
 				<!-- RELACIÓN INDICADORES CON ODS (GRÁFICA) -->
 				<section layout="row" layout-wrap style="background:white; border-bottom:1px solid #e5e5e5;">
@@ -80,9 +69,9 @@
 								</div>
 
 								<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;">
-									<label flex="100" style="padding:1em 0em;">objetivos de desarrollo</label>
+									<label flex="100" style="padding:1em 0em;">objetivos de desarrollo {{demo}}</label>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-									 	<div class="pic" ng-click="select_obj(1)">
+									 	<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(1)">
 									 		<img src="img/ods_icons/S_SDG_Icons-01-01.jpg">
 									 		<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>1</b></p>
@@ -90,7 +79,7 @@
 									 	</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(2)">
+										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(2)">
 											<img src="img/ods_icons/S_SDG_Icons-01-02.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>2</b></p>
@@ -98,7 +87,7 @@
 										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(3)">
+										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(3)">
 											<img src="img/ods_icons/S_SDG_Icons-01-03.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>3</b></p>
@@ -106,7 +95,7 @@
 										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(4)">
+										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(4)">
 											<img src="img/ods_icons/S_SDG_Icons-01-04.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>4</b></p>
@@ -114,7 +103,7 @@
 										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(5)">
+										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(5)">
 											<img src="img/ods_icons/S_SDG_Icons-01-05.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>5</b></p>
@@ -122,7 +111,7 @@
 										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(6)">
+										<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(6)">
 											<img src="img/ods_icons/S_SDG_Icons-01-06.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>6</b></p>
@@ -130,7 +119,7 @@
 										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(7)">
+										<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(7)">
 											<img src="img/ods_icons/S_SDG_Icons-01-07.jpg">
 											<span class="pic-caption top-to-bottom">
 										        <p class="pic-title"><b>7</b></p>
@@ -267,8 +256,14 @@
 										<div class="icon-title color-icon-interes"><i class="icon-interes"></i></div>
 										<div class="text-title">Interés ODS</div>
 									</div>
-									<div >
+									<div ng-show="">
 										<leaflet lf-center="bogota" defaults="defaults" width="100%" height="550px"></leaflet>
+									</div>
+									<!-- Mensaje para el USER -->
+									<div ng-show="true" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+										<div class="msj">
+											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
+										</div>
 									</div>
 								</div>
 							</div>
@@ -278,8 +273,14 @@
 										<div class="icon-title color-icon-inversion"><i class="icon-inversion"></i></div>
 										<div class="text-title">Inversión ODS</div>
 									</div>
-									<div >
+									<!-- Mensaje para el USER -->
+									<div ng-show="">
 										<leaflet lf-center="bogota" width="100%" height="550px"></leaflet>
+									</div>
+									<div ng-show="true" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+										<div class="msj">
+											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
+										</div>
 									</div>
 								</div>
 							</div>
@@ -288,7 +289,7 @@
 									<div class="icon-title"><i class="icon-inversion"></i></div> 
 									<div class="text-title">Indicador</div>
 								</div>
-								<div >
+								<div>
 									<leaflet lf-center="bogota" width="100%" height="550px"></leaflet>
 								</div>
 							</div>
@@ -308,8 +309,14 @@
 										<div class="text-title">Interés e inversión sobre objetivos de desarrollo</div>
 									</div>	
 								</div>
-								<div layout="row" layout-align="center center">
+								<div layout="row" layout-align="center center" ng-show="">
 									<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="data_bar" chart-labels="labels" chart-series="series"></canvas>
+								</div>
+								<!-- Mensaje para el USER -->
+								<div ng-show="true" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+									<div class="msj">
+										Selecciona un municipio para ver<br> el estado de todos los indicadores. 
+									</div>
 								</div>
 							</div>
 						</div>
@@ -328,7 +335,7 @@
 									<div class="text-title">Tabla</div>
 								</div>	
 							</div>
-							<div>
+							<div ng-show="">
 								<div class="tabla" layout="row">
 									<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
 										<!-- Cabecera -->
@@ -553,6 +560,12 @@
 										</div>
 									</div>
 								</div>
+							</div>
+							<!-- Mensaje para el USER -->
+							<div ng-show="true" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+									<div class="msj">
+										Selecciona un municipio para ver<br> sus niveles registrados frente a los indicadores. 
+									</div>
 							</div>
 						</div>
 					</div>

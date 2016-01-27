@@ -166,7 +166,7 @@ input[type="text"]{
 }
 
 .pic-caption{
-    opacity: 0.7;
+    opacity: 0.8;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     color: @color-secundario;
@@ -182,7 +182,32 @@ input[type="text"]{
 	opacity: 0;
 }
 
-.pic:hover{
+
+
+
+/*All classes with similar attribute*/
+
+.pic-caption,
+.pic-active .pic-caption,
+.pic-active img{
+     transition:all 0.28s ease;
+}
+
+/*--- EFFECTS AND TRANSITIONS ---*/
+
+.pic-active .bottom-to-top{
+     cursor: default;
+    opacity: 0;
+}
+/*Bottom to Top*/
+.top-to-bottom{
+    top:0%;    
+    left:0;
+
+}
+
+/* Estado marcado */
+.pic-marcado{
 	.pic-caption{
 		background-color: @color-secundario;
 		color: white;
@@ -192,40 +217,11 @@ input[type="text"]{
 	}
 }
 
-/*All classes with similar attribute*/
-a ,a:active,
-.pic .pic-image,
-.pic-caption,
-.pic:active .pic-caption,
-.pic:active img{
-     transition:all 0.28s ease;
-}
-
-/*--- EFFECTS AND TRANSITIONS ---*/
-
-.pic:active .bottom-to-top,
-.pic:active .top-to-bottom,
-.pic:active .left-to-right,
-.pic:active .right-to-left,
-.pic:active .rotate-in,
-.pic:active .rotate-out,
-.pic:active .open-up,
-.pic:active .open-down,
-.pic:active .open-left,
-.pic:active .open-right,
-.pic:active .come-left,
-.pic:active .come-right{
-     cursor: default;
+/* Estado seleccionado */
+.pic-active .top-to-bottom{
+    top:100%;
+    left:0;
     opacity: 0;
-}
-/*Bottom to Top*/
-.top-to-bottom{
-    top:0%;    
-    left:0;
-}
-.pic:active .top-to-bottom{
-    top:50%;
-    left:0;
 }
 
 /* TABLA */
@@ -311,4 +307,10 @@ label{
 
 .md-toolbar-tools{
 	padding: 0px;
+}
+
+.msj{
+	font-size: 13px;
+	text-align: center;
+	opacity: 0.6;
 }
