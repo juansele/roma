@@ -61,7 +61,7 @@
 								<div flex="100" class="indicador-seleccionado" style="border: 1px solid #e4e4e4;background: #fcfcfc;">
 									<div layout="row" layout-align="space-between center" flex="100" class="inner-cont">
 										<div flex="10" layout="row" layout-align="center center">
-											<div class="cont-icon"><img src="img/ods_icons/S_SDG_Icons-01-04.jpg"></div>
+											<div class="cont-icon"><img src="img/ods_icons/S_SDG_Icons-01-4.jpg"></div>
 										</div>
 										<div flex="75">Fin de la pobreza <span style="opacity:0.6; font-size:12px;">Este modulo aparece para brindar al usuario un indicio visual más grande del indicador que selecciono.</span></div>
 										<div flex="10">ico</div>
@@ -69,142 +69,14 @@
 								</div>
 
 								<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;">
-									<label flex="100" style="padding:1em 0em;">objetivos de desarrollo {{demo}}</label>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-									 	<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(1)">
-									 		<img src="img/ods_icons/S_SDG_Icons-01-01.jpg">
+									<label flex="100" style="padding:1em 0em;">objetivos de desarrollo</label>
+									<div flex="10" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
+									 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
+									 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
 									 		<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>1</b></p>
+										        <p class="pic-title"><b>{{value.id}}</b></p>
 										    </span>
 									 	</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(2)">
-											<img src="img/ods_icons/S_SDG_Icons-01-02.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>2</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(3)">
-											<img src="img/ods_icons/S_SDG_Icons-01-03.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>3</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(4)">
-											<img src="img/ods_icons/S_SDG_Icons-01-04.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>4</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-marcado':true}" ng-click="select_obj(5)">
-											<img src="img/ods_icons/S_SDG_Icons-01-05.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>5</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(6)">
-											<img src="img/ods_icons/S_SDG_Icons-01-06.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>6</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-class="{'pic-active':true}" ng-click="select_obj(7)">
-											<img src="img/ods_icons/S_SDG_Icons-01-07.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>7</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(8)">
-											<img src="img/ods_icons/S_SDG_Icons-01-08.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>8</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(9)">
-											<img src="img/ods_icons/S_SDG_Icons-01-09.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>9</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(10)">
-											<img src="img/ods_icons/S_SDG_Icons-01-10.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>10</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(11)">
-											<img src="img/ods_icons/S_SDG_Icons-01-11.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>11</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(12)">
-											<img src="img/ods_icons/S_SDG_Icons-01-12.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>12</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(13)">
-											<img src="img/ods_icons/S_SDG_Icons-01-13.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>13</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(14)">
-											<img src="img/ods_icons/S_SDG_Icons-01-14.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>14</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(15)">
-											<img src="img/ods_icons/S_SDG_Icons-01-15.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>15</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(16)">
-											<img src="img/ods_icons/S_SDG_Icons-01-16.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>16</b></p>
-										    </span>
-										</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center">
-										<div class="pic" ng-click="select_obj(16)">
-											<img src="img/ods_icons/S_SDG_Icons-01-17.jpg">
-											<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>17</b></p>
-										    </span>
-										</div>
 									</div>
 									<div flex="10" class="item" layout="row" layout-align="start center"></div>
 									<div flex="10" class="item" layout="row" layout-align="start center"></div>
@@ -215,15 +87,34 @@
 									<div flex="50" layout="row" layout-wrap layout-align="center center">
 										<div flex="100"><label><b>Municipio</b></label></div>
 										<div flex="95" class="mod-input" layout="row">
-											<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>
-											<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+											<!--<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>-->
+                                            <div flex="90"><angucomplete-alt id="municipio"
+                                                placeholder="MUNICIPIO"
+                                                pause="100"
+                                                selected-object="roma.current_selection.municipio"
+                                                local-data="roma.data.lista_municipios"
+                                                search-fields="nombre"
+                                                title-field="nombre"
+                                                minlength="1"
+                                                input-class="form-control form-control-small"/>
+                                            </div>
+											<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 										</div>
 									</div>
 									<div flex="50" layout="row" layout-wrap layout-align="center center">
 										<div flex="100"><label><b>ods</b></label></div>
 										<div flex="95" class="mod-input" layout="row">
-											<div flex="90"><input type="text" placeholder="ODS"></div>
-											<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+											<div flex="90"><angucomplete-alt id="objetivo"
+                                                placeholder="ODS"
+                                                pause="100"
+                                                selected-object="roma.current_selection.objetivo"
+                                                local-data="roma.data.lista_objetivos"
+                                                search-fields="nombre"
+                                                title-field="nombre"
+                                                minlength="1"
+                                                input-class="form-control form-control-small"/>
+                                            </div>
+											<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 										</div>
 									</div>
 									<div flex="100" layout="row" layout-wrap layout-align="center center">
@@ -239,7 +130,7 @@
 								
 							</div>
 						<div flex layout="row" layout-align="center center">
-							<canvas style="max-height:500px;" class="roma-dona" width="500" height="500" config="config" data="data" scan="scan" selection="selection"></canvas>
+							<canvas style="max-height:500px;" class="roma-dona" width="500" height="500" config="dona.config" data="dona.data" scan="roma.current_hover" selection="roma.current_selection"></canvas>
 						</div>
 					</div>
 					</div>
@@ -256,11 +147,11 @@
 										<div class="icon-title color-icon-interes"><i class="icon-interes"></i></div>
 										<div class="text-title">Interés ODS</div>
 									</div>
-									<div ng-show="">
-										<leaflet lf-center="bogota" defaults="defaults" width="100%" height="550px"></leaflet>
+									<div ng-show="roma.current_selection.obj !== false">
+										<leaflet id="mapa_1" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
 									</div>
 									<!-- Mensaje para el USER -->
-									<div ng-show="true" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+									<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
 										<div class="msj">
 											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
 										</div>
@@ -274,10 +165,10 @@
 										<div class="text-title">Inversión ODS</div>
 									</div>
 									<!-- Mensaje para el USER -->
-									<div ng-show="">
-										<leaflet lf-center="bogota" width="100%" height="550px"></leaflet>
+									<div ng-show="roma.current_selection.obj !== false">
+										<leaflet id="mapa_2" lf-center="mapas.center" geojson="roma.data.geojson"  width="100%" height="550px"></leaflet>
 									</div>
-									<div ng-show="true" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+									<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
 										<div class="msj">
 											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
 										</div>
@@ -289,9 +180,14 @@
 									<div class="icon-title"><i class="icon-inversion"></i></div> 
 									<div class="text-title">Indicador</div>
 								</div>
-								<div>
-									<leaflet lf-center="bogota" width="100%" height="550px"></leaflet>
-								</div>
+                                <div ng-show="roma.current_selection.ind !== false">
+									<leaflet id="mapa_3" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
+                                </div>
+                                <div ng-show="roma.current_selection.ind === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+                                    <div class="msj">
+                                        Selecciona un indicador para ver<br> la información del mapa. 
+                                    </div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -309,11 +205,11 @@
 										<div class="text-title">Interés e inversión sobre objetivos de desarrollo</div>
 									</div>	
 								</div>
-								<div layout="row" layout-align="center center" ng-show="">
+								<div layout="row" layout-align="center center" ng-show="roma.current_selection.mun !== false">
 									<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="data_bar" chart-labels="labels" chart-series="series"></canvas>
 								</div>
 								<!-- Mensaje para el USER -->
-								<div ng-show="true" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+								<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
 									<div class="msj">
 										Selecciona un municipio para ver<br> el estado de todos los indicadores. 
 									</div>
@@ -335,7 +231,7 @@
 									<div class="text-title">Tabla</div>
 								</div>	
 							</div>
-							<div ng-show="">
+							<div ng-show="roma.current_selection.mun !== false">
 								<div class="tabla" layout="row">
 									<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
 										<!-- Cabecera -->
@@ -562,7 +458,7 @@
 								</div>
 							</div>
 							<!-- Mensaje para el USER -->
-							<div ng-show="true" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+							<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
 									<div class="msj">
 										Selecciona un municipio para ver<br> sus niveles registrados frente a los indicadores. 
 									</div>
@@ -579,6 +475,7 @@
 		<script type="text/javascript" src="js/bower_components/leaflet/dist/leaflet.js"></script>
 		<script type="text/javascript" src="js/bower_components/ui-leaflet/dist/ui-leaflet.js"></script>
 		<script type="text/javascript" src="js/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+        <script type="text/javascript" src="js/bower_components/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
 		<!-- Dpendencias Angular Material -->
 		<script type="text/javascript" src="js/bower_components/angular-animate/angular-animate.min.js"></script>
 		<script type="text/javascript" src="js/bower_components/angular-aria/angular-aria.min.js"></script>
