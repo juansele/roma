@@ -10,3 +10,7 @@ mongo_db = 'roma'
 @route('/api/v1/indicadores', method='GET')
 def lista_indicadores():
 	return 'lista indicadores'
+
+@route('/api/v1/indicadores/<id_indicador>', method='GET')
+def detalle_indicador(id_indicador):
+        return 'data.region.indicador - ' + id_indicador

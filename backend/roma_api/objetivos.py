@@ -10,3 +10,7 @@ mongo_db = 'roma'
 @route('/api/v1/objetivos', method='GET')
 def lista_objetivos():
 	return 'lista objetivos'
+
+@route('/api/v1/objetivos/<id_objetivo>', method='GET')
+def detalle_objetivo(id_objetivo):
+	return 'data.region.*ods - ' + id_objetivo

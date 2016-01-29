@@ -9,4 +9,4 @@ mongo_db = 'roma'
 
 @route('/api/v1/relaciones', method='GET')
 def lista_relaciones():
-	return 'lista relaciones'
+	return 'data.relaciones'

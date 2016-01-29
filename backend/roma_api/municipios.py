@@ -10,3 +10,7 @@ mongo_db = 'roma'
 @route('/api/v1/municipios', method='GET')
 def lista_municipios():
 	return 'lista municipios'
+
+@route('/api/v1/municipios/<id_municipio>', method='GET')
+def detalle_municipio(id_municipio):
+	return 'data.municipio - ' + id_municipio
