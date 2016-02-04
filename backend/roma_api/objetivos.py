@@ -29,3 +29,4 @@ def detalle_objetivo(id_objetivo):
         valores_objetivo = objetivo
         
     return valores_objetivo
+
