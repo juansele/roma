@@ -12,463 +12,515 @@
 		<link rel="stylesheet" type="text/css" href="js/bower_components/leaflet/dist/leaflet.css">
 		<link rel="stylesheet" type="text/css" href="js/bower_components/angular-chart.js/dist/angular-chart.css">
 	</head>
-	<body layout="column" ng-app="romaApp" ng-cloak ng-controller="mainController">
-		
-		
-			<nav class="md-whiteframe-2dp">
-				<div flex="10"></div>
-				<div flex="80">
-					<div layout="row" class="md-toolbar-tools">
-						<div layuot="row" flex="10"><span><b>ROMA</b></span></div>
-						<div layout="row" flex="50" layout-align="start center">
-							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
-								<div flex="100" layout="row" layout-align="center center"><label><b>Gráfica</b></label></div>
-								
-							</div>
-							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
-								<div flex="100" layout="row" layout-align="center center"><label><b>Mapas</b></label></div>
-								
-							</div>
-							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
-								<div flex="100" layout="row" layout-align="center center"><label><b>G. Barras</b></label></div>
-								
-							</div>
-							<div flex="25" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
-								<div flex="100" layout="row" layout-align="center center"><label><b>Tabla</b></label></div>
-								
-							</div>
-						</div>
-						<div layout="row" flex="30">
-							<div flex layout="row" layout-align="end center">
-								<div>
-									<md-icon md-svg-src="img/icons/ic_info_outline_black_24px.svg"></md-icon>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div flex="10"></div>
-			</nav>
+	<body ng-app="romaApp" ng-cloak ng-controller="mainController">
+		<section layout="column">
 			
-			<md-content layout="column" md-scroll-y>
-				<!-- RELACIÓN INDICADORES CON ODS (GRÁFICA) -->
-				<section layout="row" layout-wrap style="background:white; border-bottom:1px solid #e5e5e5;">
-					<div flex="10"></div>
-					<div flex="80" layout="row" layout-align="space-between center" layout-wrap>
-						<div flex="100" layout="row" layout-align="space-between center" style="margin: 3em 0em; height:70vh;">
-							<div flex="50" layout="row" layout-align="start center" layout-wrap>
-								
-								<div flex="100" class="indicador-seleccionado" style="border: 1px solid #e4e4e4;background: #fcfcfc;">
-									<div layout="row" layout-align="space-between center" flex="100" class="inner-cont">
-										<div flex="10" layout="row" layout-align="center center">
-											<div class="cont-icon"><img src="img/ods_icons/S_SDG_Icons-01-4.jpg"></div>
-										</div>
-										<div flex="75">Fin de la pobreza <span style="opacity:0.6; font-size:12px;">Este modulo aparece para brindar al usuario un indicio visual más grande del indicador que selecciono.</span></div>
-										<div flex="10">ico</div>
-									</div>	
-								</div>
-
-								<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;">
-									<label flex="100" style="padding:1em 0em;">objetivos de desarrollo</label>
-									<div flex="10" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
-									 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
-									 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
-									 		<span class="pic-caption top-to-bottom">
-										        <p class="pic-title"><b>{{value.id}}</b></p>
-										    </span>
-									 	</div>
-									</div>
-									<div flex="10" class="item" layout="row" layout-align="start center"></div>
-									<div flex="10" class="item" layout="row" layout-align="start center"></div>
-									<div flex="10" class="item" layout="row" layout-align="start center"></div>
-								</div>
-
-								<div flex="100" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado" style="margin-top:0.5em;">
-									<div flex="50" layout="row" layout-wrap layout-align="center center">
-										<div flex="100"><label><b>Municipio</b></label></div>
-										<div flex="95" class="mod-input" layout="row">
-											<!--<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>-->
-                                            <div flex="90"><angucomplete-alt id="municipio"
-                                                placeholder="MUNICIPIO"
-                                                pause="100"
-                                                selected-object="roma.current_selection.municipio"
-                                                local-data="roma.data.lista_municipios"
-                                                search-fields="nombre"
-                                                title-field="nombre"
-                                                minlength="1"
-                                                input-class="form-control form-control-small"/>
-                                            </div>
-											<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
-										</div>
-									</div>
-									<div flex="50" layout="row" layout-wrap layout-align="center center">
-										<div flex="100"><label><b>ods</b></label></div>
-										<div flex="95" class="mod-input" layout="row">
-											<div flex="90"><angucomplete-alt id="objetivo"
-                                                placeholder="ODS"
-                                                pause="100"
-                                                selected-object="roma.current_selection.objetivo"
-                                                local-data="roma.data.lista_objetivos"
-                                                search-fields="nombre"
-                                                title-field="nombre"
-                                                minlength="1"
-                                                input-class="form-control form-control-small"/>
-                                            </div>
-											<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
-										</div>
-									</div>
-									<div flex="100" layout="row" layout-wrap layout-align="center center">
-										<div flex="100"><label><b>indicador</b></label></div>
-										<div flex="95" class="mod-input" layout="row">
-											<div flex="95"><input type="text" placeholder="INDICADOR"></div>
-											<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
-										</div>
-									</div>
-								</div>
-
-								
-								
+				<nav class="md-whiteframe-2dp" layout="row" layout-align="center center">
+					
+					<div flex="95">
+						<div layout="row" class="md-toolbar-tools">
+							<div layuot="row" flex="25">
+								<img style="max-width: 106px;" src="img/logo-main.svg">
 							</div>
-						<div flex layout="row" layout-align="center center">
-							<canvas style="max-height:500px;" class="roma-dona" width="500" height="500" config="dona.config" data="dona.data" scan="roma.current_hover" selection="roma.current_selection"></canvas>
+							
+							<div layout="row" flex="50" layout-align="start center">
+								<div flex="15" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+									<div flex="100" layout="row" layout-align="center center"><label><b>Gráfica</b></label></div>
+									
+								</div>
+								<div flex="15" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+									<div flex="100" layout="row" layout-align="center center"><label><b>Mapas</b></label></div>
+									
+								</div>
+								<div flex="15" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+									<div flex="100" layout="row" layout-align="center center"><label><b>G. Barras</b></label></div>
+									
+								</div>
+								<div flex="15" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
+									<div flex="100" layout="row" layout-align="center center"><label><b>Tabla</b></label></div>
+									
+								</div>
+							</div> 
+							<div layout="row" flex="30">
+								<div flex layout="row" layout-align="end center">
+									<div>
+										<md-icon md-svg-src="img/icons/ic_info_outline_black_24px.svg"></md-icon>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					</div>
-					<div flex="10"></div>
-				</section>
-				<!-- MÓDULO DE TRES MAPAS (INVERSIÓN, INTERÉS Y INDICADOR) -->
-				<section layout="row" layout-wrap style="background:#F7F7F7;margin-top:1em;">
-					<div flex="5"></div>
-					<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
-						<div flex="100" layout="row" layout-align="space-between center">
-							<div flex="33" layout="row" layout-align="start center" layout-wrap>
-								<div flex="95" class="module-map" style="border:1px solid #e6e6e6;">
-									<div layout="row" layout-align="center center" class="title-mod-map interes-mod">
-										<div class="icon-title color-icon-interes"><i class="icon-interes"></i></div>
-										<div class="text-title">Interés ODS</div>
-									</div>
-									<div ng-show="roma.current_selection.obj !== false">
-										<leaflet id="mapa_1" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
-									</div>
-									<!-- Mensaje para el USER -->
-									<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
-										<div class="msj">
-											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
-										</div>
-									</div>
-								</div>
-							</div>
-							<div flex="33" layout="row" layout-align="start center" layout-wrap>
-								<div flex="95" class="module-map" style="border:1px solid #e6e6e6;">
-									<div layout="row" layout-align="center center" class="title-mod-map inversion-mod">
-										<div class="icon-title color-icon-inversion"><i class="icon-inversion"></i></div>
-										<div class="text-title">Inversión ODS</div>
-									</div>
-									<!-- Mensaje para el USER -->
-									<div ng-show="roma.current_selection.obj !== false">
-										<leaflet id="mapa_2" lf-center="mapas.center" geojson="roma.data.geojson"  width="100%" height="550px"></leaflet>
-									</div>
-									<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
-										<div class="msj">
-											Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
-										</div>
-									</div>
-								</div>
-							</div>
-							<div flex="33" layout="column" class="module-map" style="border:1px solid #e6e6e6;">
-								<div layout="row" layout-align="center center" class="title-mod-map">
-									<div class="icon-title"><i class="icon-inversion"></i></div> 
-									<div class="text-title">Indicador</div>
-								</div>
-                                <div ng-show="roma.current_selection.ind !== false">
-									<leaflet id="mapa_3" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
-                                </div>
-                                <div ng-show="roma.current_selection.ind === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
-                                    <div class="msj">
-                                        Selecciona un indicador para ver<br> la información del mapa. 
+					
+				</nav>
+				
+				<md-content layout="row" md-scroll-y>
+					<section flex="25" layout="row" layout-align="center center" layout-wrap style="position:fixed; width: 25%; margin-top:6em;">
+						<div flex="90" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
+							<div flex="100" style="padding:1em 0em;"><label><b>FILTROS DE INFORMACIÓN</b></label></div>
+							<div flex="100" layout="row" layout-wrap layout-align="end center">
+								<div flex="100" class="mod-input" layout="row">
+									<div flex="90"><angucomplete-alt id="objetivo"
+                                        placeholder="ODS"
+                                        pause="100"
+                                        selected-object="roma.current_selection.objetivo"
+                                        local-data="roma.data.lista_objetivos"
+                                        search-fields="nombre"
+                                        title-field="nombre"
+                                        minlength="1"
+                                        input-class="form-control form-control-small"/>
                                     </div>
-                                </div>
+									<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div flex="5"></div>
-				</section>
-				<!-- GRÁFICA DE BARRAS -->
-				<section layout="row" layout-wrap style="background:#F7F7F7;margin-top:1em;padding-bottom:1em;">
-					<div flex="5"></div>
-					<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
-						<div flex="100" layout="row" layout-align="space-between center" style="margin: 0.5em 0em;">
-							<div flex="100" layout="column" class="module-map" style="border:1px solid #eee;">
-								<div layout="row" layout-align="start center" class="title-mod-map">
-									<div layout="row" layout-align="center center" style="padding:0em 1em;">
-										<div class="icon-title"><i class="icon-interes"></i></div>
-										<div class="text-title">Interés e inversión sobre objetivos de desarrollo</div>
-									</div>	
+							<div flex="100" layout="row" layout-wrap layout-align="start center">
+								<div flex="100" class="mod-input" layout="row">
+									<!--<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>-->
+                                    <div flex="90"><angucomplete-alt id="municipio"
+                                        placeholder="MUNICIPIO"
+                                        pause="100"
+                                        selected-object="roma.current_selection.municipio"
+                                        local-data="roma.data.lista_municipios"
+                                        search-fields="nombre"
+                                        title-field="nombre"
+                                        minlength="1"
+                                        input-class="form-control form-control-small"/>
+                                    </div>
+									<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
-								<div layout="row" layout-align="center center" ng-show="roma.current_selection.mun !== false">
-									<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="data_bar" chart-labels="labels" chart-series="series"></canvas>
-								</div>
-								<!-- Mensaje para el USER -->
-								<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
-									<div class="msj">
-										Selecciona un municipio para ver<br> el estado de todos los indicadores. 
-									</div>
+							</div>
+							<div flex="100" layout="row" layout-wrap layout-align="center center">
+								<div flex="100" class="mod-input" layout="row" layout-align="start center">
+									<div flex="100"><input type="text" placeholder="INDICADOR"></div>
+									<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div flex="5"></div>
-				</section>
-				<!-- TABLA DE NIVELES REGISTRADOS -->
-				<section layout="row" layout-wrap style="background:#FFF;margin:2em 0em;">
-					<div flex="5"></div>
-					<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
-						<div flex="100" layout="row" layout-align="space-between center" style="margin: 1em 0em;">
-						<div flex="100" layout="column" class="module-map" style="border:1px solid #eee; height:auto;">
-							<div layout="row" layout-align="start center" class="title-mod-map">
-								<div layout="row" layout-align="center center" style="padding:0em 1em;">
-									<div class="icon-title"><i class="icon-interes"></i></div>
-									<div class="text-title">Tabla</div>
-								</div>	
+					</section>
+					<section flex="25" style="    border-right: 1px solid #ECECEC;
+    background: #FBFBFB;"></section>
+
+
+					<!-- RELACIÓN INDICADORES CON ODS (GRÁFICA) -->
+					<section flex="80" layout="column">
+						<section layout="row"  style="background:white; border-bottom:1px solid #e5e5e5;">
+							<div flex="5"></div>
+							<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
+								<div flex="100" layout="row" layout-align="space-around center" style="margin: 3em 0em; height:70vh; MARGIN-TOP: 60PX;">
+									<div flex="30" layout="row" layout-align="start center" layout-wrap>
+
+										<!-- <div flex="100" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
+											<div flex="100" style="padding:1em 0em;"><label><b>FILTROS DE INFORMACIÓN</b></label></div>
+											<div flex="50" layout="row" layout-wrap layout-align="start center">
+												<div flex="95" class="mod-input" layout="row"> -->
+													<!--<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>-->
+		                                           <!--  <div flex="90"><angucomplete-alt id="municipio"
+		                                                placeholder="MUNICIPIO"
+		                                                pause="100"
+		                                                selected-object="roma.current_selection.municipio"
+		                                                local-data="roma.data.lista_municipios"
+		                                                search-fields="nombre"
+		                                                title-field="nombre"
+		                                                minlength="1"
+		                                                input-class="form-control form-control-small"/>
+		                                            </div>
+													<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+												</div>
+											</div>
+											<div flex="50" layout="row" layout-wrap layout-align="end center">
+												<div flex="95" class="mod-input" layout="row">
+													<div flex="90"><angucomplete-alt id="objetivo"
+		                                                placeholder="ODS"
+		                                                pause="100"
+		                                                selected-object="roma.current_selection.objetivo"
+		                                                local-data="roma.data.lista_objetivos"
+		                                                search-fields="nombre"
+		                                                title-field="nombre"
+		                                                minlength="1"
+		                                                input-class="form-control form-control-small"/>
+		                                            </div>
+													<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+												</div>
+											</div>
+											<div flex="100" layout="row" layout-wrap layout-align="center center">
+												<div flex="100" class="mod-input" layout="row" layout-align="start center">
+													<div flex="100"><input type="text" placeholder="INDICADOR"></div>
+													<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+												</div>
+											</div>
+										</div> -->
+
+										
+
+										<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;padding:0px;">
+											<label flex="100" style="padding:1em 0em;"><b>objetivos de desarrollo</b></label>
+											<div flex="15" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
+											 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
+											 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
+											 		<span class="pic-caption top-to-bottom">
+												        <p class="pic-title"><b>{{value.id}}</b></p>
+												    </span>
+											 	</div>
+											</div>
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+										</div>
+
+										<!-- <div flex="100" class="indicador-seleccionado" style="border: 1px solid #e4e4e4;background: #fcfcfc;">
+											<div layout="row" layout-align="space-between center" flex="100" class="inner-cont">
+												<div flex="10" layout="row" layout-align="center center">
+													<div class="cont-icon"><img src="img/ods_icons/S_SDG_Icons-01-4.jpg"></div>
+												</div>
+												<div flex="75">Fin de la pobreza <span style="opacity:0.6; font-size:12px;">Este modulo aparece para brindar al usuario un indicio visual más grande del indicador que selecciono.</span></div>
+												<div flex="10">ico</div>
+											</div>	
+										</div> -->
+										
+
+										
+										
+									</div>
+								<div flex="40" layout="row" layout-align="end center">
+									<canvas style="max-height:500px;" class="roma-dona" width="500" height="500" config="dona.config" data="dona.data" scan="roma.current_hover" selection="roma.current_selection"></canvas>
+								</div>
 							</div>
-							<div ng-show="roma.current_selection.mun !== false">
-								<div class="tabla" layout="row">
-									<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
-										<!-- Cabecera -->
-										<div class="cabecera" layout="row" layout-align="center center">
-											<div class="item-cabecera" flex="10">N°</div>
-											<div class="item-cabecera" flex="60">Nombre indicador</div>
-											<div class="item-cabecera" flex>Nivel registrado</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">3</div>
-											<div class="item-fila" flex="60">Indicador 3</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">4</div>
-											<div class="item-fila" flex="60">Indicador 4</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">5</div>
-											<div class="item-fila" flex="60">Indicador 5</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">6</div>
-											<div class="item-fila" flex="60">Indicador 6</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">7</div>
-											<div class="item-fila" flex="60">Indicador 7</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">8</div>
-											<div class="item-fila" flex="60">Indicador 8</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">9</div>
-											<div class="item-fila" flex="60">Indicador 9</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">10</div>
-											<div class="item-fila" flex="60">Indicador 10</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">11</div>
-											<div class="item-fila" flex="60">Indicador 11</div>
-											<div class="item-fila" flex>0.5</div>
+							</div>
+							<div flex="5"></div>
+						</section>
+						<!-- MÓDULO DE TRES MAPAS (INVERSIÓN, INTERÉS Y INDICADOR) -->
+						<section layout="row"  style="background:#F7F7F7;margin-top:3em;">
+							<div flex="5"></div>
+							<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
+								<div flex="100" layout="row" layout-align="space-between center">
+									<div flex="33" layout="row" layout-align="start center" layout-wrap>
+										<div flex="95" class="module-map">
+											<div layout="row" layout-align="center center" class="title-mod-map interes-mod">
+												<div class="icon-title color-icon-interes"><i class="icon-interes"></i></div>
+												<div class="text-title">Interés ODS</div>
+											</div>
+											<div ng-show="roma.current_selection.obj !== false">
+												<leaflet id="mapa_1" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
+											</div>
+											<!-- Mensaje para el USER -->
+											<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+												<div class="msj">
+													Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
-										<!-- Cabecera -->
-										<div class="cabecera" layout="row" layout-align="center center">
-											<div class="item-cabecera" flex="10">N°</div>
-											<div class="item-cabecera" flex="60">Nombre indicador</div>
-											<div class="item-cabecera" flex>Nivel registrado</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
+									<div flex="33" layout="row" layout-align="start center" layout-wrap>
+										<div flex="95" class="module-map">
+											<div layout="row" layout-align="center center" class="title-mod-map inversion-mod">
+												<div class="icon-title color-icon-inversion"><i class="icon-inversion"></i></div>
+												<div class="text-title">Inversión ODS</div>
+											</div>
+											<!-- Mensaje para el USER -->
+											<div ng-show="roma.current_selection.obj !== false">
+												<leaflet id="mapa_2" lf-center="mapas.center" geojson="roma.data.geojson"  width="100%" height="550px"></leaflet>
+											</div>
+											<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+												<div class="msj">
+													Selecciona un objetivo de desarrollo para ver<br> la información del mapa. 
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="sub-tabla" flex="50" layout="column">
-										<!-- Cabecera -->
-										<div class="cabecera" layout="row" layout-align="center center">
-											<div class="item-cabecera" flex="10">N°</div>
-											<div class="item-cabecera" flex="60">Nombre indicador</div>
-											<div class="item-cabecera" flex>Nivel registrado</div>
+									<div flex="33" layout="column" class="module-map">
+										<div layout="row" layout-align="center center" class="title-mod-map">
+											<div class="icon-title"><i class="icon-inversion"></i></div> 
+											<div class="text-title">Indicador</div>
 										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
+		                                <div ng-show="roma.current_selection.ind !== false">
+											<leaflet id="mapa_3" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
+		                                </div>
+		                                <div ng-show="roma.current_selection.ind === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
+		                                    <div class="msj">
+		                                        Selecciona un indicador para ver<br> la información del mapa. 
+		                                    </div>
+		                                </div>
+									</div>
+								</div>
+							</div>
+							<div flex="5"></div>
+						</section>
+						<!-- GRÁFICA DE BARRAS -->
+						<section layout="row"  style="background:#F7F7F7;margin-top:1em;padding-bottom:1em;">
+							<div flex="5"></div>
+							<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
+								<div flex="100" layout="row" layout-align="space-between center" style="margin: 0.5em 0em;">
+									<div flex="100" layout="column" class="module-map">
+										<div layout="row" layout-align="center center" class="title-mod-map">
+											<div layout="row" layout-align="center center" style="padding:0em 1em;">
+												<div class="text-title">Interés e inversión sobre objetivos de desarrollo</div>
+											</div>	
 										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
+										<div layout="row" layout-align="center center" ng-show="roma.current_selection.mun !== false">
+											<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="data_bar" chart-labels="labels" chart-series="series"></canvas>
 										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">1</div>
-											<div class="item-fila" flex="60">Indicador 1</div>
-											<div class="item-fila" flex>0.3</div>
-										</div>
-										<!-- Fila -->
-										<div class="mod-fila" layout="row">
-											<div class="item-fila" flex="10">2</div>
-											<div class="item-fila" flex="60">Indicador 2</div>
-											<div class="item-fila" flex>0.5</div>
+										<!-- Mensaje para el USER -->
+										<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+											<div class="msj">
+												Selecciona un municipio para ver<br> el estado de todos los indicadores. 
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- Mensaje para el USER -->
-							<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
-									<div class="msj">
-										Selecciona un municipio para ver<br> sus niveles registrados frente a los indicadores. 
+							<div flex="5"></div>
+						</section>
+						<!-- TABLA DE NIVELES REGISTRADOS -->
+						<section layout="row" style="margin-bottom: 3em;">
+							<div flex="5"></div>
+							<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
+								<div flex="100" layout="row" layout-align="space-between center" >
+								<div flex="100" layout="column" class="module-map" style=" height:auto;">
+									<div layout="row" layout-align="center center" class="title-mod-map">
+										<div layout="row" layout-align="center center" style="padding:0em 1em;">
+											<div class="text-title">Tabla registros de indicadores</div>
+										</div>	
 									</div>
+									<div ng-show="roma.current_selection.mun !== false">
+										<div class="tabla" layout="row">
+											<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
+												<!-- Cabecera -->
+												<div class="cabecera" layout="row" layout-align="center center">
+													<div class="item-cabecera" flex="10">N°</div>
+													<div class="item-cabecera" flex="60">Nombre indicador</div>
+													<div class="item-cabecera" flex>Nivel registrado</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">3</div>
+													<div class="item-fila" flex="60">Indicador 3</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">4</div>
+													<div class="item-fila" flex="60">Indicador 4</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">5</div>
+													<div class="item-fila" flex="60">Indicador 5</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">6</div>
+													<div class="item-fila" flex="60">Indicador 6</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">7</div>
+													<div class="item-fila" flex="60">Indicador 7</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">8</div>
+													<div class="item-fila" flex="60">Indicador 8</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">9</div>
+													<div class="item-fila" flex="60">Indicador 9</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">10</div>
+													<div class="item-fila" flex="60">Indicador 10</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">11</div>
+													<div class="item-fila" flex="60">Indicador 11</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+											</div>
+											<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
+												<!-- Cabecera -->
+												<div class="cabecera" layout="row" layout-align="center center">
+													<div class="item-cabecera" flex="10">N°</div>
+													<div class="item-cabecera" flex="60">Nombre indicador</div>
+													<div class="item-cabecera" flex>Nivel registrado</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+											</div>
+											<div class="sub-tabla" flex="50" layout="column">
+												<!-- Cabecera -->
+												<div class="cabecera" layout="row" layout-align="center center">
+													<div class="item-cabecera" flex="10">N°</div>
+													<div class="item-cabecera" flex="60">Nombre indicador</div>
+													<div class="item-cabecera" flex>Nivel registrado</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">1</div>
+													<div class="item-fila" flex="60">Indicador 1</div>
+													<div class="item-fila" flex>0.3</div>
+												</div>
+												<!-- Fila -->
+												<div class="mod-fila" layout="row">
+													<div class="item-fila" flex="10">2</div>
+													<div class="item-fila" flex="60">Indicador 2</div>
+													<div class="item-fila" flex>0.5</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Mensaje para el USER -->
+									<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
+											<div class="msj">
+												Selecciona un municipio para ver<br> sus niveles registrados frente a los indicadores. 
+											</div>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					</div>
-					<div flex="5"></div>
-				</section>
-			</md-content>
+							</div>
+							<div flex="5"></div>
+						</section>
+					</section>
+				</md-content>
+		</section>
+		
 		
 		
 		<script type="text/javascript" src="js/bower_components/angular/angular.min.js"></script>
