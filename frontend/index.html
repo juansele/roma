@@ -15,15 +15,15 @@
 	<body ng-app="romaApp" ng-cloak ng-controller="mainController">
 		<section layout="column">
 			
-				<nav class="md-whiteframe-2dp" layout="row" layout-align="center center">
+				<!-- <nav class="md-whiteframe-2dp" layout="row" layout-align="center center">
 					
-					<div flex="95">
+					<div flex="90">
 						<div layout="row" class="md-toolbar-tools">
-							<div layuot="row" flex="25">
+							<div layuot="row" flex="20">
 								<img style="max-width: 106px;" src="img/logo-main.svg">
 							</div>
 							
-							<div layout="row" flex="50" layout-align="start center">
+							<div layout="row" flex="80" layout-align="start center">
 								<div flex="15" layout="row" layout-wrap layout-align="center center" style="padding:1em 0em;color:white">
 									<div flex="100" layout="row" layout-align="center center"><label><b>Gráfica</b></label></div>
 									
@@ -51,13 +51,14 @@
 						</div>
 					</div>
 					
-				</nav>
-				
-				<md-content layout="row" md-scroll-y>
-					<section flex="20" layout="row" layout-align="center center" layout-wrap style="position:fixed; width: 20%; margin-top:6em;">
-						<div flex="90" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
-							<div flex="100" style="padding:1em 0em;"><label><b>FILTROS DE INFORMACIÓN</b></label></div>
-							<div flex="100" layout="row" layout-wrap layout-align="end center">
+				</nav> -->
+
+				<section layout="row" class="md-whiteframe-1dp"  layout-align="center center" style="position:fixed; width: 100%; z-index:1030; 
+    background: #FBFBFB; height:80px;">
+					<div flex="90" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
+						<div flex="20"><img style="max-width: 128px;" src="img/logo-main.svg"></div>
+						<div flex="80" layout="row" layout-align="space-between">
+							<div flex="30" layout="row" layout-wrap layout-align="end center">
 								<div flex="100" class="mod-input" layout="row">
 									<div flex="90"><angucomplete-alt id="objetivo"
                                         placeholder="ODS"
@@ -72,7 +73,7 @@
 									<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
-							<div flex="100" layout="row" layout-wrap layout-align="start center">
+							<div flex="33" layout="row" layout-wrap layout-align="start center">
 								<div flex="100" class="mod-input" layout="row">
 									<!--<div flex="90"><input type="text" placeholder="MUNICIPIO"></div>-->
                                     <div flex="90"><angucomplete-alt id="municipio"
@@ -83,29 +84,33 @@
                                         search-fields="nombre"
                                         title-field="nombre"
                                         minlength="1"
-                                        input-class="form-control form-control-small"/>
+                                        input-class="form-control form-control-small"/></angucomplete-alt>
                                     </div>
 									<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
-							<div flex="100" layout="row" layout-wrap layout-align="center center">
+							<div flex="33" layout="row" layout-wrap layout-align="center center">
 								<div flex="100" class="mod-input" layout="row" layout-align="start center">
 									<div flex="100"><input type="text" placeholder="INDICADOR"></div>
 									<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
 						</div>
-					</section>
-					<section flex="20" style="    border-right: 1px solid #ECECEC;
-    background: #FBFBFB;"></section>
+					</div>
+
+				</section>
+			
 
 
+
+				<md-content layout="row" layout-align="center center" md-scroll-y>
 					<!-- RELACIÓN INDICADORES CON ODS (GRÁFICA) -->
-					<section flex="80" layout="column">
+					<section flex layout="column">
 						<section layout="row"  style="background:white; border-bottom:1px solid #e5e5e5;">
 							<div flex="5"></div>
 							<div flex="90" layout="row" layout-align="space-between center" layout-wrap>
-								<div flex="100" layout="row" layout-align="space-around center" style="margin: 3em 0em; height:70vh; MARGIN-TOP: 60PX;">
+								<div flex="100" style="height:129px;"></div>
+								<div flex="100" layout="row" layout-align="space-around center" style=" height:83vh;">
 									<div flex="30" layout="row" layout-align="start center" layout-wrap>
 
 										<!-- <div flex="100" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
@@ -152,7 +157,9 @@
 										
 
 										<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;padding:0px;">
-											<label flex="100" style="padding:1em 0em;"><b>objetivos de desarrollo</b></label>
+											<label flex="100" style="padding:1em 0em;    font-size: 33px;
+    letter-spacing: -1px;
+    line-height: 37px;"><b>RELACIÓN iNDICADORES Y ODS'S</b></label>
 											<div flex="15" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
 											 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
 											 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
@@ -166,6 +173,9 @@
 											<div flex="10" class="item" layout="row" layout-align="start center"></div>
 										</div>
 
+										<div style="font-size:13px; padding:1em 0em;opacity:0.7;">
+											Para ver la información de los indicadores selecciona uno de los cuadros de arriba o escribe en los filtros de la parte superior.
+										</div>
 										<!-- <div flex="100" class="indicador-seleccionado" style="border: 1px solid #e4e4e4;background: #fcfcfc;">
 											<div layout="row" layout-align="space-between center" flex="100" class="inner-cont">
 												<div flex="10" layout="row" layout-align="center center">
@@ -175,14 +185,10 @@
 												<div flex="10">ico</div>
 											</div>	
 										</div> -->
-										
-
-										
-										
 									</div>
-								<div flex="45" layout="row" layout-align="end center">
-									<canvas style="max-height:500px;" class="roma-dona" width="500" height="500" config="dona.config" data="dona.data" scan="roma.current_hover" selection="roma.current_selection"></canvas>
-								</div>
+									<div flex="50" layout="row" layout-align="end center">
+										<canvas  class="roma-dona" width="500" height="500" config="dona.config" data="dona.data" scan="roma.current_hover" selection="roma.current_selection"></canvas>
+									</div>
 							</div>
 							</div>
 							<div flex="5"></div>
