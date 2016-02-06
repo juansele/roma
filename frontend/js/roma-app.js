@@ -9,8 +9,8 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
     
     // me invento la data
     var relacionados = [];
-    for (var i = 0; i < 0.2*68*17; i++) {
-        var indicador = Math.floor(68*Math.random());
+    for (var i = 0; i < 0.2*78*17; i++) {
+        var indicador = Math.floor(78*Math.random());
         var ods = Math.floor(17*Math.random());
         relacionados.push([indicador,ods]);
     }
@@ -19,7 +19,7 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
         ind: {},
         dim: []
     };
-    for (var i = 0; i < 68; i++) {
+    for (var i = 0; i < 78; i++) {
         data.ind[i] = [];
     }
     for (var i = 0; i < 17; i++) {
@@ -47,24 +47,16 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             zoom: 9
         }
     };
-    // funny resize hack
-    leafletData.getMap().then(function(map) {
-        map.invalidateSize();
-    });
-    
-    // una funcion para jugar con la directiva
-    $scope.select_obj = function(obj){
-        $scope.selection['obj'] = obj;
-        $scope.selection['ind'] = false;
-    };
 
     // mainObject
     $scope.roma = {
         data: {
             dict_municipios: {},
             dict_objetivos: {},
+            dict_indicadores: {},
             lista_municipios: [],
             lista_objetivos: [],
+            lista_indicadores: [],
             geojson: {
                 data: [],
                 style: {
@@ -89,7 +81,7 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
     // municipios
     $http({
         method: 'GET',
-        url: 'http://roma.mett.com.co/api/v1/municipios'
+        url: 'http://roma.mett.com.co:7572/api/v1/municipios'
         }).then(function successCallback(response) {
             $scope.roma.data.dict_municipios = response.data;
             Object.keys(response.data).forEach(function(key) {
@@ -101,7 +93,7 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
     // objetivos
     $http({
         method: 'GET',
-        url: 'http://roma.mett.com.co/api/v1/objetivos'
+        url: 'http://roma.mett.com.co:7572/api/v1/objetivos'
         }).then(function successCallback(response) {
             $scope.roma.data.dict_objetivos = response.data;
             Object.keys(response.data).forEach(function(key) {
@@ -110,10 +102,22 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
         }, function errorCallback(response) {
             console.log('sometin wong');
     });
+    // indicadores
+    $http({
+        method: 'GET',
+        url: 'http://roma.mett.com.co:7572/api/v1/indicadores'
+        }).then(function successCallback(response) {
+            $scope.roma.data.dict_indicadores = response.data;
+            Object.keys(response.data).forEach(function(key) {
+                $scope.roma.data.lista_indicadores.push(response.data[key]);
+            });
+        }, function errorCallback(response) {
+            console.log('sometin wong');
+    });
     // poligonos municipios
     $http({
         method: 'GET',
-        url: 'http://roma.mett.com.co/api/v1/municipios.geojson'
+        url: 'http://roma.mett.com.co:7572/api/v1/municipios.geojson'
         }).then(function successCallback(response) {
             $scope.roma.data.geojson.data = response.data.municipios;
         }, function errorCallback(response) {
@@ -127,19 +131,17 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             $scope.$broadcast('angucomplete-alt:changeInput', 'objetivo', $scope.roma.data.dict_objetivos[parseInt(newValue.obj)+1]);
             $http({
                 method: 'GET',
-                url: 'http://roma.mett.com.co/api/v1/objetivos/' + String(newValue.obj + 1)
+                url: 'http://roma.mett.com.co:7572/api/v1/objetivos/' + String(newValue.obj + 1)
                 }).then(function successCallback(response) {
-                    $scope.roma.data.geojson.style = function(feature){
-                        console.log('pinta');
-                        //return {color: "#333333", weight: 2, opacity: $scope.roma.data.region[feature.properties.id].interes};
-                        return {color: "#F1C40F", weight: 0, fillOpacity: Math.random()};
-                    };
-                    for (var i=1; i<=3; i++){
+                    $scope.roma.data.objetivos_region = response.data.municipios;
+
+                    var propiedad = {mapa_1: 'interes', mapa_2: 'inversion', mapa_3: 'indicador'};
+                    for (var i=1; i<=2; i++){
                         leafletData.getMap('mapa_'+String(i)).then(function(map) {
                             var color = '#'+Math.floor(Math.random()*16777215).toString(16);
                             map.eachLayer(function (layer) {
                                 if (layer.feature){
-                                    layer.setStyle({color: color, weight: 0, fillOpacity: Math.random()});
+                                    layer.setStyle({color: color, weight: 0, fillOpacity: $scope.roma.data.objetivos_region[layer.feature.properties.id][propiedad[map.getContainer().id]]});
                                 }
                             });
                             map.invalidateSize();
@@ -150,6 +152,31 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             });
         } else if (newValue.obj === false){
             $scope.$broadcast('angucomplete-alt:clearInput', 'objetivo');
+        }
+        
+        if (newValue.ind !== oldValue.ind && newValue.ind !== false) {
+            $scope.$broadcast('angucomplete-alt:changeInput', 'indicador', $scope.roma.data.dict_indicadores[parseInt(newValue.ind)+1]);
+            $http({
+                method: 'GET',
+                url: 'http://roma.mett.com.co:7572/api/v1/indicadores/' + String(newValue.ind + 1)
+                }).then(function successCallback(response) {
+                    $scope.roma.data.indicadores_region = response.data.municipios;
+
+                    leafletData.getMap('mapa_3').then(function(map) {
+                        var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+                        map.eachLayer(function (layer) {
+                            if (layer.feature){
+                                layer.setStyle({color: color, weight: 0, fillOpacity: $scope.roma.data.indicadores_region[layer.feature.properties.id]});
+                            }
+                        });
+                        map.invalidateSize();
+                    });
+                    
+                }, function errorCallback(response) {
+                    console.log('sometin wong');
+            });
+        } else if (newValue.ind === false){
+            $scope.$broadcast('angucomplete-alt:clearInput', 'indicador');
         }
     });
     
@@ -165,6 +192,13 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             $scope.roma.current_selection.obj = false;
         } else if (newValue != oldValue && newValue) {
             $scope.roma.current_selection.obj = newValue.originalObject['id'] - 1;
+        }
+    });
+    $scope.$watch('roma.current_selection.indicador', function(newValue, oldValue){
+        if (newValue === false) {
+            $scope.roma.current_selection.ind = false;
+        } else if (newValue != oldValue && newValue) {
+            $scope.roma.current_selection.ind = newValue.originalObject['id'] - 1;
         }
     });
 

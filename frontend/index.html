@@ -91,8 +91,17 @@
 							</div>
 							<div flex="33" layout="row" layout-wrap layout-align="center center">
 								<div flex="100" class="mod-input" layout="row" layout-align="start center">
-									<div flex="100"><input type="text" placeholder="INDICADOR"></div>
-									<div flex><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
+									<div flex="100"><angucomplete-alt id="indicador"
+                                        placeholder="INDICADOR"
+                                        pause="100"
+                                        selected-object="roma.current_selection.indicador"
+                                        local-data="roma.data.lista_indicadores"
+                                        search-fields="nombre"
+                                        title-field="nombre"
+                                        minlength="1"
+                                        input-class="form-control form-control-small"/></angucomplete-alt>
+                                    </div>
+									<div flex ng-click="limpiar_input('indicador')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
 						</div>
