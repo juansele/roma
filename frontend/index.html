@@ -105,7 +105,7 @@
 								</div>
 							</div>
 						</div>
-						<div flex="15" layout="row" layout-align="end center"><img style="max-width: 118px;opacity:0.7" src="img/Logo-Gobernacion.png"></div>
+						<div flex="15" layout="row" layout-align="end center"><img style="max-width: 118px;opacity:0.8" src="img/Logo-Gobernacion.png"></div>
 					</div>
 
 				</section>
@@ -167,9 +167,7 @@
 										
 
 										<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;padding:0px;">
-											<label flex="100" style="padding:1em 0em;    font-size: 33px;
-    letter-spacing: -1px;
-    line-height: 37px;"><b>RELACIÓN iNDICADORES Y ODS'S</b></label>
+											<label flex="100" style="padding:1em 0em;    font-size: 33px;letter-spacing: -1px;line-height: 37px;"><b>RELACIÓN iNDICADORES Y ODS'S</b></label>
 											<div flex="15" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
 											 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
 											 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
@@ -178,9 +176,11 @@
 												    </span>
 											 	</div>
 											</div>
-											<div flex="10" class="item" layout="row" layout-align="start center"></div>
-											<div flex="10" class="item" layout="row" layout-align="start center"></div>
-											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+											<div flex="15" class="item" layout="row" layout-align="start center">
+												<div class="pic"></div>
+											</div>
+											
+											
 										</div>
 
 										<div style="font-size:13px; padding:1em 0em;opacity:0.7;">
