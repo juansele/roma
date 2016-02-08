@@ -272,7 +272,7 @@
 											</div>	
 										</div>
 										<div layout="row" layout-align="center center" ng-show="roma.current_selection.mun !== false">
-											<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="data_bar" chart-labels="labels" chart-series="series"></canvas>
+											<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="roma.data.municipio.grafica" chart-labels="labels" chart-series="series"></canvas>
 										</div>
 										<!-- Mensaje para el USER -->
 										<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">
@@ -306,70 +306,10 @@
 													<div class="item-cabecera" flex>Nivel registrado</div>
 												</div>
 												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">3</div>
-													<div class="item-fila" flex="60">Indicador 3</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">4</div>
-													<div class="item-fila" flex="60">Indicador 4</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">5</div>
-													<div class="item-fila" flex="60">Indicador 5</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">6</div>
-													<div class="item-fila" flex="60">Indicador 6</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">7</div>
-													<div class="item-fila" flex="60">Indicador 7</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">8</div>
-													<div class="item-fila" flex="60">Indicador 8</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">9</div>
-													<div class="item-fila" flex="60">Indicador 9</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">10</div>
-													<div class="item-fila" flex="60">Indicador 10</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">11</div>
-													<div class="item-fila" flex="60">Indicador 11</div>
-													<div class="item-fila" flex>0.5</div>
+												<div class="mod-fila" layout="row" ng-repeat="(key, value) in roma.data.municipio.tabla" ng-if="key <= 26">
+													<div class="item-fila" flex="10">{{value.id}}</div>
+													<div class="item-fila" flex="60">{{value.nombre}}</div>
+													<div class="item-fila" flex>{{value.valor}}</div>
 												</div>
 											</div>
 											<div class="sub-tabla" flex="50" layout="column" style="border-right:4px solid #eee;">
@@ -380,70 +320,10 @@
 													<div class="item-cabecera" flex>Nivel registrado</div>
 												</div>
 												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
+												<div class="mod-fila" layout="row" ng-repeat="(key, value) in roma.data.municipio.tabla" ng-if="key > 26 && key <= 52">
+													<div class="item-fila" flex="10">{{value.id}}</div>
+													<div class="item-fila" flex="60">{{value.nombre}}</div>
+													<div class="item-fila" flex>{{value.valor}}</div>
 												</div>
 											</div>
 											<div class="sub-tabla" flex="50" layout="column">
@@ -454,70 +334,10 @@
 													<div class="item-cabecera" flex>Nivel registrado</div>
 												</div>
 												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">1</div>
-													<div class="item-fila" flex="60">Indicador 1</div>
-													<div class="item-fila" flex>0.3</div>
-												</div>
-												<!-- Fila -->
-												<div class="mod-fila" layout="row">
-													<div class="item-fila" flex="10">2</div>
-													<div class="item-fila" flex="60">Indicador 2</div>
-													<div class="item-fila" flex>0.5</div>
+												<div class="mod-fila" layout="row" ng-repeat="(key, value) in roma.data.municipio.tabla" ng-if="key > 52">
+													<div class="item-fila" flex="10">{{value.id}}</div>
+													<div class="item-fila" flex="60">{{value.nombre}}</div>
+													<div class="item-fila" flex>{{value.valor}}</div>
 												</div>
 											</div>
 										</div>
