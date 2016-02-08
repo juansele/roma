@@ -214,7 +214,7 @@
 												<div class="text-title">Interés ODS</div>
 											</div>
 											<div ng-show="roma.current_selection.obj !== false">
-												<leaflet id="mapa_1" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
+												<leaflet id="mapa_1" lf-center="mapas.center" defaults="mapas.defaults" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
 											</div>
 											<!-- Mensaje para el USER -->
 											<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
@@ -232,7 +232,7 @@
 											</div>
 											<!-- Mensaje para el USER -->
 											<div ng-show="roma.current_selection.obj !== false">
-												<leaflet id="mapa_2" lf-center="mapas.center" geojson="roma.data.geojson"  width="100%" height="550px"></leaflet>
+												<leaflet id="mapa_2" lf-center="mapas.center" defaults="mapas.defaults" geojson="roma.data.geojson"  width="100%" height="550px"></leaflet>
 											</div>
 											<div ng-show="roma.current_selection.obj === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
 												<div class="msj">
@@ -247,7 +247,7 @@
 											<div class="text-title">Indicador</div>
 										</div>
 		                                <div ng-show="roma.current_selection.ind !== false">
-											<leaflet id="mapa_3" lf-center="mapas.center" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
+											<leaflet id="mapa_3" lf-center="mapas.center" defaults="mapas.defaults" geojson="roma.data.geojson" width="100%" height="550px"></leaflet>
 		                                </div>
 		                                <div ng-show="roma.current_selection.ind === false" layout="row" layout-align="center center" style="height:550px;background:#eee;">
 		                                    <div class="msj">

@@ -45,6 +45,9 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             lat: 5.0108,
             lng: -74.4741, 
             zoom: 9
+        },
+        defaults: {
+            scrollWheelZoom: false
         }
     };
 
@@ -144,7 +147,13 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
                             var color = '#'+Math.floor(Math.random()*16777215).toString(16);
                             map.eachLayer(function (layer) {
                                 if (layer.feature){
-                                    layer.setStyle({color: color, weight: 0, fillOpacity: $scope.roma.data.objetivos_region[layer.feature.properties.id][propiedad[map.getContainer().id]]});
+                                    layer.setStyle({
+                                        color: color, 
+                                        weight: 2,
+                                        opacity: 1,
+                                        fillOpacity: $scope.roma.data.objetivos_region[layer.feature.properties.id][propiedad[map.getContainer().id]]
+                                    });
+                                    layer.bindPopup(layer.feature.properties.nombre);
                                 }
                             });
                             map.invalidateSize();
