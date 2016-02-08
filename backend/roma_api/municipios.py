@@ -38,4 +38,11 @@ def geojson_municipios():
 
 @route('/api/v1/municipios/<id_municipio>', method='GET')
 def detalle_municipio(id_municipio):
-    return 'data.municipio - ' + id_municipio
+    db = pymongo.MongoClient(mongo_ip, mongo_port)[mongo_db]
+
+    valores_municipio = {}
+    cursor = db.municipios.find({'id': int(id_municipio)},{'_id': False, 'interes': True, 'inversion': True, 'indicador': True})
+    for municipio in cursor:
+        valores_municipio = municipio
+        
+    return valores_municipio
