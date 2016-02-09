@@ -1,4 +1,4 @@
- <!doctype html>
+<!doctype html>
 <html lang="ES">
 	<head>
 		<meta charset="UTF-8">
@@ -57,17 +57,17 @@
     background: #FBFBFB; height:80px;">
 					<div flex="90" layout="row" layout-wrap layout-align="space-between center" class="indicador-seleccionado">
 						<div flex><img style="max-width: 128px;" src="img/logo-main.svg"></div>
-						<div flex="60" layout="row" layout-align="space-between">
+						<div flex="80" layout="row" layout-align="space-between">
 							<div flex="30" layout="row" layout-wrap layout-align="end center">
 								<div flex="100" class="mod-input" layout="row">
 									<div flex="90"><angucomplete-alt id="objetivo"
-                                        placeholder="ODS"
+                                        placeholder="OBJETIVO DE DESARROLLO"
                                         pause="100"
                                         selected-object="roma.current_selection.objetivo"
                                         local-data="roma.data.lista_objetivos"
                                         search-fields="nombre"
                                         title-field="nombre"
-                                        minlength="1"
+                                        minlength="0"
                                         input-class="form-control form-control-small"/>
                                     </div>
 									<div flex ng-click="limpiar_input('objetivo')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
@@ -83,7 +83,7 @@
                                         local-data="roma.data.lista_municipios"
                                         search-fields="nombre"
                                         title-field="nombre"
-                                        minlength="1"
+                                        minlength="0"
                                         input-class="form-control form-control-small"/></angucomplete-alt>
                                     </div>
 									<div flex ng-click="limpiar_input('municipio')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
@@ -98,14 +98,16 @@
                                         local-data="roma.data.lista_indicadores"
                                         search-fields="nombre"
                                         title-field="nombre"
-                                        minlength="1"
+                                        minlength="0"
                                         input-class="form-control form-control-small"/></angucomplete-alt>
                                     </div>
 									<div flex ng-click="limpiar_input('indicador')"><md-icon md-svg-src="img/icons/ic_close_black_24px.svg"></md-icon></div>
 								</div>
 							</div>
+                            
+                            <div flex="15" layout="row" layout-align="end center"><img style="max-width: 118px;opacity:0.8" src="img/Logo-Gobernacion.png"></div>
+                            
 						</div>
-						<div flex="15" layout="row" layout-align="end center"><img style="max-width: 118px;opacity:0.8" src="img/Logo-Gobernacion.png"></div>
 					</div>
 
 				</section>
@@ -167,7 +169,9 @@
 										
 
 										<div flex="100" layout="row" layout-align="space-between center" layout-wrap class="indicador-seleccionado" style="margin-top:0.1em;border-radius:3px;padding:0px;">
-											<label flex="100" style="padding:1em 0em;    font-size: 33px;letter-spacing: -1px;line-height: 37px;"><b>RELACIÓN iNDICADORES Y ODS'S</b></label>
+											<label flex="100" style="padding:1em 0em;    font-size: 33px;
+    letter-spacing: -1px;
+    line-height: 37px;"><b>RELACIÓN iNDICADORES Y ODS</b></label>
 											<div flex="15" class="item" layout="row" layout-align="start center" ng-repeat="(key, value) in roma.data.dict_objetivos">
 											 	<div class="pic" ng-class="{'pic-active':value.id-1===roma.current_selection.obj, 'pic-marcado': false, }" ng-click="roma.current_selection.obj=value.id-1">
 											 		<img src="img/ods_icons/S_SDG_Icons-01-{{value.id}}.jpg">
@@ -176,11 +180,9 @@
 												    </span>
 											 	</div>
 											</div>
-											<div flex="15" class="item" layout="row" layout-align="start center">
-												<div class="pic"></div>
-											</div>
-											
-											
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
+											<div flex="10" class="item" layout="row" layout-align="start center"></div>
 										</div>
 
 										<div style="font-size:13px; padding:1em 0em;opacity:0.7;">
@@ -272,7 +274,7 @@
 											</div>	
 										</div>
 										<div layout="row" layout-align="center center" ng-show="roma.current_selection.mun !== false">
-											<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="roma.data.municipio.grafica" chart-labels="labels" chart-series="series"></canvas>
+											<canvas  id="bar" class="chart chart-bar" width="1000" height="330px;" chart-data="roma.data.municipio.grafica" chart-labels="labels" chart-series="series" chart-legend="true"></canvas>
 										</div>
 										<!-- Mensaje para el USER -->
 										<div ng-show="roma.current_selection.mun === false" layout="row" layout-fill layout-align="center center" style="background:#eee;height:450px">

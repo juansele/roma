@@ -24,7 +24,7 @@ def detalle_objetivo(id_objetivo):
     db = pymongo.MongoClient(mongo_ip, mongo_port)[mongo_db]
 
     valores_objetivo = {}
-    cursor = db.objetivos.find({'id': int(id_objetivo)},{'_id': False, 'municipios': True})
+    cursor = db.objetivos.find({'id': int(id_objetivo)},{'_id': False, 'municipios': True, 'color': True})
     for objetivo in cursor:
         valores_objetivo = objetivo
         

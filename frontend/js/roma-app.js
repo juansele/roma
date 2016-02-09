@@ -141,14 +141,13 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
                 }).then(function successCallback(response) {
                     $scope.roma.data.objetivos_region = response.data.municipios;
 
-                    var propiedad = {mapa_1: 'interes', mapa_2: 'inversion', mapa_3: 'indicador'};
+                    var propiedad = {mapa_1: 'interes', mapa_2: 'inversion'};
                     for (var i=1; i<=2; i++){
                         leafletData.getMap('mapa_'+String(i)).then(function(map) {
-                            var color = '#'+Math.floor(Math.random()*16777215).toString(16);
                             map.eachLayer(function (layer) {
                                 if (layer.feature){
                                     layer.setStyle({
-                                        color: color, 
+                                        color: response.data.color, 
                                         weight: 2,
                                         opacity: 1,
                                         fillOpacity: $scope.roma.data.objetivos_region[layer.feature.properties.id][propiedad[map.getContainer().id]]
@@ -178,7 +177,12 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
                         var color = '#'+Math.floor(Math.random()*16777215).toString(16);
                         map.eachLayer(function (layer) {
                             if (layer.feature){
-                                layer.setStyle({color: color, weight: 0, fillOpacity: $scope.roma.data.indicadores_region[layer.feature.properties.id]});
+                                layer.setStyle({
+                                    color: color, 
+                                    weight: 2,
+                                    opacity: 1,
+                                    fillOpacity: $scope.roma.data.indicadores_region[layer.feature.properties.id]
+                                });
                             }
                         });
                         map.invalidateSize();
@@ -231,6 +235,6 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
     });
 
 
-    $scope.labels = ['ODS1', 'ODS2', 'ODS3', 'ODS4', 'ODS5', 'ODS6', 'ODS7', 'ODS8', 'ODS9', 'ODS10', 'ODS11', 'ODS12', 'ODS13', 'ODS14', 'ODS15', 'ODS16', 'ODS17'];
+    $scope.labels = ['ODS1', 'ODS2', 'ODS3', 'ODS4', 'ODS5', 'ODS6', 'ODS7', 'ODS8', 'ODS9', 'ODS10', 'ODS11', 'ODS12', 'ODS13', 'ODS15', 'ODS16', 'ODS17'];
     $scope.series = ['Interes', 'Inversión'];
 });
