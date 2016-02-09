@@ -9,11 +9,12 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
     
     // me invento la data
     var relacionados = [];
-    for (var i = 0; i < 0.2*78*17; i++) {
-        var indicador = Math.floor(78*Math.random());
-        var ods = Math.floor(17*Math.random());
-        relacionados.push([indicador,ods]);
-    }
+    //for (var i = 0; i < 0.2*78*17; i++) {
+    //    var indicador = Math.floor(78*Math.random());
+    //    var ods = Math.floor(17*Math.random());
+    //    relacionados.push([indicador,ods]);
+    //}
+    relacionados = [[0,0],[0,1],[0,2],[0,3],[0,7],[0,10],[1,0],[1,7],[1,9],[1,10],[2,0],[2,1],[2,4],[2,9],[2,10],[3,0],[4,0],[4,1],[4,2],[5,1],[6,2],[6,4],[7,2],[8,2],[9,2],[10,2],[10,11],[11,2],[11,8],[11,10],[12,2],[12,10],[13,2],[14,2],[15,2],[16,2],[17,2],[17,10],[18,3],[19,3],[19,4],[20,3],[20,4],[21,3],[22,3],[22,4],[23,3],[23,4],[24,3],[24,4],[24,7],[25,3],[26,3],[27,3],[27,4],[28,1],[28,2],[28,3],[28,7],[28,9],[28,10],[29,3],[30,3],[31,3],[32,2],[32,4],[33,1],[33,4],[33,7],[33,9],[33,10],[34,4],[35,0],[35,1],[35,2],[35,5],[35,8],[35,10],[36,5],[37,1],[37,2],[37,3],[37,5],[37,7],[37,10],[37,12],[38,0],[38,1],[38,2],[38,5],[38,8],[38,10],[39,5],[40,5],[41,5],[42,5],[43,5],[44,5],[45,5],[46,5],[47,5],[48,5],[49,5],[50,5],[51,5],[52,5],[53,5],[54,5],[55,6],[56,6],[57,7],[58,1],[58,8],[58,10],[58,16],[59,8],[60,0],[60,7],[60,9],[61,10],[61,12],[61,16],[62,12],[63,12],[64,12],[65,12],[66,12],[67,12],[68,12],[69,12],[70,12],[71,12],[72,1],[72,11],[72,12],[72,14],[73,14],[74,2],[74,4],[74,10],[74,15],[75,15],[75,16],[76,15],[77,16]];
     var data = {
         obj: {},
         ind: {},
@@ -47,6 +48,10 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
             zoom: 9
         },
         defaults: {
+            tileLayer: "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+            tileLayerOptions: {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+            },
             scrollWheelZoom: false
         }
     };
@@ -147,7 +152,8 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
                             map.eachLayer(function (layer) {
                                 if (layer.feature){
                                     layer.setStyle({
-                                        color: response.data.color, 
+                                        color: response.data.color,
+                                        fillColor: response.data.color, 
                                         weight: 2,
                                         opacity: 1,
                                         fillOpacity: $scope.roma.data.objetivos_region[layer.feature.properties.id][propiedad[map.getContainer().id]]
@@ -183,6 +189,7 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
                                     opacity: 1,
                                     fillOpacity: $scope.roma.data.indicadores_region[layer.feature.properties.id]
                                 });
+                                layer.bindPopup(layer.feature.properties.nombre);
                             }
                         });
                         map.invalidateSize();
