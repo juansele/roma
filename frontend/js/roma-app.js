@@ -244,4 +244,5 @@ romaApp.controller('mainController', function($scope, $http, leafletData){
 
     $scope.labels = ['ODS1', 'ODS2', 'ODS3', 'ODS4', 'ODS5', 'ODS6', 'ODS7', 'ODS8', 'ODS9', 'ODS10', 'ODS11', 'ODS12', 'ODS13', 'ODS15', 'ODS16', 'ODS17'];
     $scope.series = ['Interes', 'Inversión'];
+    $scope.colours = ['#ffc107','#607d8b']
 });
